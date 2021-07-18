@@ -2,7 +2,6 @@
 """
 Created on Tue Mar 30 08:36:12 2021
 
-@author: Yahya
 """
 
 import math
