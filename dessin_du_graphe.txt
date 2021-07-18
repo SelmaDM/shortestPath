@@ -1,0 +1,41 @@
+# ########################################################
+# Dessin du graphe
+# ########################################################
+
+print('*****************************************')
+print('* Dessin du graphe                      *')
+print('*****************************************')
+
+def cercle(x,y,r,couleur):
+    can.create_oval(x-r, y-r, x+r, y+r, outline = couleur, fill = couleur)
+
+def TraceCercle(j,couleur,rayon):
+    x=(Longitude[j]-minLong)*ratioWidth + border
+    y=((Latitude[j]-minLat)*ratioHeight) + border
+    y=winHeight-y
+    cercle(x,y,rayon,couleur)
+
+fen = Tk()
+fen.title('Graphe')
+coul = "dark green"   #['purple','cyan','maroon','green','red','blue','orange','yellow']
+
+Delta_Long = maxLong-minLong
+Delta_Lat = maxLat-minLat
+border = 20         # taille en px des bords
+winWidth_int = 800
+winWidth = winWidth_int+2*border     # largeur de la fenetre
+winHeight_int = 800
+winHeight = winHeight_int+2*border     # hauteur de la fenetre : recalculee en fonction de la taille du graphe
+#ratio= 1.0          # rapport taille graphe / taille fenetre
+ratioWidth = winWidth_int/(maxLong-minLong)       #  rapport largeur graphe/ largeur de la fenetre
+ratioHeight = winHeight_int/(maxLat-minLat)       #  rapport hauteur du graphe hauteur de la fenetre
+
+can = Canvas(fen, width = winWidth, height = winHeight, bg ='dark grey')
+can.pack(padx=5,pady=5)
+
+#  cercles
+rayon = 1               # rayon pour dessin des sommets
+rayon_od = 5           # rayon pour sommet origine et destination
+# Affichage de tous les sommets
+for i in range(0,NbSommets):
+    TraceCercle(i,'black',rayon)
